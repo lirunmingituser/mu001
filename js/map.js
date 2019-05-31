@@ -1,5 +1,5 @@
 mapboxgl.accessToken =
-	"pk.eyJ1Ijoic3RlcGhlbnNvbi1oZXJpdGFnZSIsImEiOiJjanZ4ejlxazMwYWRlNDhrOHJxN2hlZGl5In0.GvwpDRkNHQKPfS8S2SA4Dg";
+	"pk.eyJ1IjoiYXBwbGUxMDk5IiwiYSI6ImNqd2JjNGNvZjAzcXA0OW51NHdsZzhnZGwifQ.6YEOlQsUY5LaWoDV412AGQ";
 
 const geoIp =
 	"https://api.ipgeolocation.io/ipgeo?apiKey=c461a284199842f893dc5ec8561c9a7a";
@@ -64,9 +64,9 @@ document.addEventListener("DOMContentLoaded", async () => {
 
 	map = new mapboxgl.Map({
 		container: "map",
-		style: "mapbox://styles/stephenson-heritage/cjvxzf5s96jcy1cmptnuxdskv",
-		center: [-75.67273468814251, 45.38968954429647],
-		zoom: 9
+		style: "mapbox://styles/apple1099/cjwce6mgp0d1m1cms43yex1do",
+		center: [-75.69273468814251, 45.42168954429647],
+		zoom: 19
 	});
 
 	locInfo = await centerOnUser();
@@ -88,14 +88,16 @@ document.addEventListener("DOMContentLoaded", async () => {
 		document.getElementById("drplist").options.add(opt);
 
 		console.log(locInfo.latitude, locInfo.longitude);
-		let distance = getDistanceFromLatLonInKm(
+		let distance1 = getDistanceFromLatLonInKm(
 			e.geometry.coordinates[1],
 			e.geometry.coordinates[0],
 			locInfo.latitude,
 			locInfo.longitude
 		);
+		let distance=parseFloat(distance1)*0.01/0.01;
+		console.log(distance);
 		let link =
-			"<a href=link.html#" + e.properties.NAME.replace(/\s/g, "") + ">Link</a>";
+			"<a href=link.html#" + e.properties.NAME.replace(/\s/g, "") + ">Details</a>";
 		var popup = new mapboxgl.Popup({ offset: 25 }).setText(
 			"Construction on the Washington Monument began in 1848."
 		);
